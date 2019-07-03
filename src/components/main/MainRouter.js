@@ -8,9 +8,7 @@ var gameAdminRouter = require('../game/GameAdminRouter');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  Game = new GameModel();
-  Game.findById(1);
-  res.json(Game.toString());
+  res.json({test:"main"});
 });
 
 //Game
