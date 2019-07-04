@@ -7,8 +7,7 @@ var gameAdminRouter = require('../game/GameAdminRouter');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-  res.json({test:"main"});
+    res.json({routername:"main"});
 });
 
 //Game

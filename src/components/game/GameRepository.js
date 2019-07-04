@@ -14,16 +14,12 @@ class GameModel{
     }
 
    findById(id){
-        db(this.tableName).where('id',id).then(rows=>{
-            return rows;
-        })
+        return db(this.tableName).where('id',id);
+    }
+    findAll(){
+        return db(this.tableName);
     }
 
-
-
-    toString(){
-        return JSON.stringify(this.result);
-    }
 
     save(){
         db(this.tableName).insert(this.record).then(()=>{
@@ -31,4 +27,4 @@ class GameModel{
         })
     }
 }
-module.exports = GameModel;
+module.exports = new GameModel;
