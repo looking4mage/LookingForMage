@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var GameModel = require('../game/GameRepository');
 
 var gameRouter = require('../game/GameRouter');
 var gameAdminRouter = require('../game/GameAdminRouter');
+
+var gameRouter = require('../room/RoomRouter');
+var gameAdminRouter = require('../room/RoomAdminRouter');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,6 +15,10 @@ router.get('/', function(req, res, next) {
 //Game
 router.use('/game',gameRouter);
 router.use('/admin/game',gameAdminRouter);
+
+//Game
+router.use('/room',gameRouter);
+router.use('/admin/room',gameAdminRouter);
 
 
 
