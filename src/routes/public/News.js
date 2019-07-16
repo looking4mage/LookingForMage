@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.json({routername:"gameAdmin"});
+    res.json({rauterName:"Public/News"});
 });
 
 
