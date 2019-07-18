@@ -1,18 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
-var PublicRouter = require('./public/index')
+var ClientRouter = require('./client/index')
 
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.json({routername:"main"});
+
+
+//Client
+router.use('/client',ClientRouter);
+
+
+
+/* GET 404 page. */
+router.get('*', function(req, res, next) {
+    res.json({apiName:"Looking For Mage",version:"v0.0.1",code:"404",message:"Route not found"});
 });
-
-//Game
-router.use('/public',PublicRouter);
-
-
-
 
 module.exports = router;
