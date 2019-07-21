@@ -6,6 +6,12 @@ exports.up = function(knex) {
     table.timestamp('updated').defaultTo(knex.fn.now())
     table.string('user_name')
     table.string('password')
+    table.string('email')
+    table.integer('profile_id').unsigned().notNullable()
+    table.foreign('profile_id').references('id').inTable('user_profile')
+    table.integer('gamer_profile_id').unsigned().notNullable()
+    table.foreign('gamer_profile_id').references('id').inTable('user_gamer_profile')
+    
 
   })
 };

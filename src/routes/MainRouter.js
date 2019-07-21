@@ -2,12 +2,16 @@ var express = require('express');
 var router = express.Router();
 
 var ClientRouter = require('./client/index')
+var PublicRouter = require('./public/index')
 
 
 
 
 //Client
 router.use('/client',ClientRouter);
+router.use('/public',PublicRouter);
+
+
 
 
 

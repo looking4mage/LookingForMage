@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-var NewsRouter = require('./News')
+var UserRouter = require('./User')
 
 
 //all client routes
-router.use('/news',NewsRouter);
+router.use('/user',UserRouter);
 
 
 module.exports = router;
