@@ -4,11 +4,11 @@ var router = express.Router();
 var ClientRouter = require('./client/index')
 var PublicRouter = require('./public/index')
 
-
+var ClientValidator = require('../components/middleware/validation/ClientValidator')
 
 
 //Client
-router.use('/client',ClientRouter);
+router.use('/client',ClientValidator,ClientRouter);
 router.use('/public',PublicRouter);
 
 

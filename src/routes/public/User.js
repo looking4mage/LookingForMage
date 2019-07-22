@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+var jwt = require('jsonwebtoken');
+var config = require('../../config/global')
 
 
 
@@ -26,7 +28,7 @@ router.post('/create', function(req, res, next) {
 
   UserRepository.getByEmail(incomingData.email).then(result=>{
     if(result.length !== 0){
-      res.status(400).json({message:"Email is used"})
+      res.status(400).json(new Message('Email istnieje'))
     }else{
       UserRepository.createProfile(UserProfileData).then(resulUP=>{
         UserRepository.createGamerProfile(new UserGamerProfile()).then(resultUGP=>{
@@ -41,5 +43,21 @@ router.post('/create', function(req, res, next) {
     
 });
 
+router.post('/login', function(req, res, next) {
+
+  let incomingData = req.body;
+
+  UserRepository.getByEmail(incomingData.email).then(result=>{
+    if(result.length === 0){
+      res.status(400).send(new Message('Uzytkownik nie istnieje'))
+    }else{
+      var token = jwt.sign({data: result.id},config.app.secret, { expiresIn: config.app.tokenExpirationTime });
+      res.status(200).send(new Message(token))
+    }
+  })
+
+
+    
+});
 
 module.exports = router;

@@ -22,7 +22,7 @@ let Repository = {
 
     createGamerProfile(obj){
         return db('user_gamer_profile').insert(obj)
-    }
+    },
 
 }
 

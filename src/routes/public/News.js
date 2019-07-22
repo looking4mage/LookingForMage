@@ -3,9 +3,11 @@ var router = express.Router();
 var NewsRepository = require('../../components/news/NewsRepository')
 
 /* GET home page. */
-router.post('/', function(req, res, next) {
+router.get('/', function(req, res, next) {
     
-    res.send('client after validation');
+    NewsRepository.findById(2).then((result)=>{
+        res.json({routerName:"Client/News",data:result});
+    })
 
     
 });
