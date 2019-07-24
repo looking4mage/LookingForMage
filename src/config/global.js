@@ -11,7 +11,26 @@ const dev = {
         tokenExpirationTime:86400
     }
 }
-const prod = {}
+const prod = {
+    database:{
+        host:'127.0.0.1',
+        user:'root',
+        password:'',
+        database:'g-test',
+        client:'mysql'
+    },
+    app:{
+        secret:"sdfasdf23424sdfafgwe23gew",
+        tokenExpirationTime:86400
+    }
+}
 
+let data = {};
 
-module.exports =  dev 
+if(process.env.NODE_ENV=="development"){
+    data = dev;
+}else if(process.env.NODE_ENV=="production"){
+    data = prod;
+}
+
+module.exports =  data;
