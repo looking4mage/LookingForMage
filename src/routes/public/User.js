@@ -48,12 +48,19 @@ router.post('/login', function(req, res, next) {
   let incomingData = req.body;
 
   UserRepository.getByEmail(incomingData.email).then(result=>{
-    if(result.length === 0){
-      res.status(400).send(new Message('Uzytkownik nie istnieje'))
-    }else{
-      var token = jwt.sign({data: result.id},config.app.secret, { expiresIn: config.app.tokenExpirationTime });
-      res.status(200).send(new Message(token))
-    }
+    bcrypt.compare(incomingData.password, result[0].password, function(err, resp) {
+      if(resp==true){
+        if(result.length === 0){
+          res.status(400).send(new Message('Uzytkownik nie istnieje'))
+        }else{
+          var token = jwt.sign({id: result[0].id,user_name:result[0].user_name,email:result[0].email},config.app.secret,{expiresIn:config.app.tokenExpirationTime});
+          res.status(200).send({token:token,user:result[0]})
+        }
+      }else{
+        res.status(400).send(new Message('Niepoprawne dane'))
+      }
+    });
+    
   })
 
 

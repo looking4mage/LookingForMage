@@ -9,12 +9,11 @@ module.exports = function (req, res, next) {
         if (err) {
           return res.json(new Message('Token is not valid'));
         } else {
-          req.decoded = decoded;
-          console.log(decoded);
+          req.user = decoded;
           next();
         }
       });
-    } else {
+    }else{
       return res.json(new Message('Auth token is not supplied'));
     }
-    }
+}
