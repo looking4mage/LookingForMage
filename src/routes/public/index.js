@@ -7,6 +7,7 @@ var NewsRouter = require('./News')
 
 //all client routes
 router.use('/user',UserRouter);
+router.use('/news',NewsRouter);
 
 
 module.exports = router;

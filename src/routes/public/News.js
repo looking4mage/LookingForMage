@@ -5,11 +5,9 @@ var NewsRepository = require('../../components/news/NewsRepository')
 /* GET home page. */
 router.get('/', function(req, res, next) {
     
-    NewsRepository.findById(2).then((result)=>{
-        res.json({routerName:"Client/News",data:result});
+    NewsRepository.findAllPublic().then((result)=>{
+        res.json({data:result});
     })
-
-    
 });
 
 
