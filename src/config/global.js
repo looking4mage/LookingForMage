@@ -31,6 +31,8 @@ if(process.env.NODE_ENV=="development"){
     data = dev;
 }else if(process.env.NODE_ENV=="production"){
     data = prod;
+}else if(process.env.NODE_ENV=="local"){
+    data = dev;
 }
 
 module.exports =  data;

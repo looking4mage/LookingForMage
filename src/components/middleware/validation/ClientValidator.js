@@ -9,11 +9,16 @@ module.exports = function (req, res, next) {
         if (err) {
           return res.json(new Message('Token is not valid'));
         } else {
-          req.user = decoded;
-          next();
+          if(decoded.exp < Date.now()){
+            req.user = decoded;
+            next();
+          }else{
+            return res.json(new Message('Token is expired'));
+          }
+          
         }
       });
     }else{
-      return res.json(new Message('Auth token is not supplied'));
+      return res.json(new Message('Token is not supplied'));
     }
 }
