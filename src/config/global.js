@@ -2,8 +2,8 @@ const dev = {
     database:{
         host:'127.0.0.1',
         user:'root',
-        password:'y3cFGVJsAXd4zaEn',
-        database:'lfm',
+        password:'',
+        database:'g-test',
         client:'mysql'
     },
     app:{
@@ -14,9 +14,9 @@ const dev = {
 const prod = {
     database:{
         host:'127.0.0.1',
-        user:'root',
-        password:'',
-        database:'g-test',
+        user:'ubuntu',
+        password:'y3cFGVJsAXd4zaEn',
+        database:'lfm',
         client:'mysql'
     },
     app:{
