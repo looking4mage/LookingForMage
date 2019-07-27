@@ -186,3 +186,7 @@ typings/
 
 # End of https://www.gitignore.io/api/node,intellij,visualstudiocode
 package-lock.json
+.idea/vcs.xml
+.idea/g-test.iml
+.idea/misc.xml
+.idea/modules.xml
