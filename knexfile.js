@@ -29,11 +29,11 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
+    client: config.client,
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      user : config.user,
+      password : config.password,
+      database : config.database
     },
     pool: {
       min: 2,

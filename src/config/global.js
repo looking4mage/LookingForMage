@@ -2,8 +2,8 @@ const dev = {
     database:{
         host:'127.0.0.1',
         user:'root',
-        password:'',
-        database:'g-test',
+        password:'y3cFGVJsAXd4zaEn',
+        database:'lfm',
         client:'mysql'
     },
     app:{
