@@ -7,12 +7,16 @@ var NewsModel = require('../../components/news/NewsModel')
 /* GET home page. */
 router.post('/create', function(req, res, next) {
     let incomingData = req.body;
-    let news = new NewsModel(incomingData.title,incomingData.content,req.user.id)
+    let news = new NewsModel(incomingData.title,incomingData.content,req.user.id,incomingData.scope)
     NewsRepository.save(news).then(result=>{
         res.status(200).end();
     });
     
 });
+
+router.get('/',function(req,res,next){
+    res.send('client news')
+})
 
 
 module.exports = router;
