@@ -12,7 +12,7 @@ router.get('/type-list',(req,res,next)=>{
     })
 });
 
-router.get('/create',(req,res,next)=>{
+router.post('/create',(req,res,next)=>{
     let incomingData = req.body;
     GroupRepository.save(incomingData).then(group_id=>{
         GroupUserRepository.save({user_id:req.user.id,group_id:group_id[0],role_id:1}).then(result=>{

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var NewsRepository = require('../../components/news/NewsRepository')
+var FriendsRepository = require('../../components/friends/FriendsRepository')
 
 var NewsModel = require('../../components/news/NewsModel')
 
@@ -15,7 +16,14 @@ router.post('/create', function(req, res, next) {
 });
 
 router.get('/',function(req,res,next){
-    res.send('client news')
+    FriendsRepository.findAll(req.user.id).then(result=>{
+        let list = result.map(item=>{
+            return item.friend_id
+        })
+        NewsRepository.getNewsForUser(list).then(news => {
+            res.send(news);
+        })
+    })
 })
 
 

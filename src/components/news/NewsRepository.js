@@ -11,6 +11,10 @@ let Repository = {
     
     save(obj){
         return db('news').insert(obj);
+    },
+
+    getNewsForUser(friends_list){
+        return db('news').select().whereIn('user_id',friends_list)
     }
 
 }
