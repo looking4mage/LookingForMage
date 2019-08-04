@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 var jwt = require('jsonwebtoken');
 var config = require('../../config/global')
+var emailValidation = require('../../util/validation')
 
 
 
@@ -24,7 +25,17 @@ router.post('/create', function(req, res, next) {
   let hashedPassword = bcrypt.hashSync(incomingData.password, saltRounds);
   let UserProfileData = new UserProfile(incomingData.first_name,incomingData.last_name);
   
+  if(incomingData.email==''){
+    res.send(new Message('Email jest wymagany')).end();
+  }
 
+  if(!emailValidation(incomingData.email)){
+    res.send(new Message('Niepoprawny format adresu email')).end();
+  }
+
+  if(incomingData.password==''){
+    res.send(new Message('Hasło jest wymagane')).end();
+  }
 
   UserRepository.getByEmail(incomingData.email).then(result=>{
     if(result.length !== 0){
@@ -54,6 +65,8 @@ router.post('/login', function(req, res, next) {
           res.status(400).send(new Message('Uzytkownik nie istnieje'))
         }else{
           var token = jwt.sign({id: result[0].id,user_name:result[0].user_name,email:result[0].email},config.app.secret,{expiresIn:config.app.tokenExpirationTime});
+          delete result[0].password;
+          delete result[0].updated;
           res.status(200).send({token:token,user:result[0]})
         }
       }else{
