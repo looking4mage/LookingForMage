@@ -54,6 +54,20 @@ router.post('/create', function(req, res, next) {
     
 });
 
+
+/**
+ * @swagger
+ * /api/users:
+ *   get:
+ *     tags:
+ *       - users
+ *     description: Returns all users
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: An array of users
+ */
 router.post('/login', function(req, res, next) {
 
   let incomingData = req.body;
