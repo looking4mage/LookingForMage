@@ -16,29 +16,29 @@ router.use('/public',PublicRouter);
 
 
 
-// swagger definition
-var swaggerDefinition = {
-    info: {
-      title: 'Node Swagger API',
-      version: '1.0.0',
-      description: 'Demonstrating how to describe a RESTful API with Swagger',
-    },
-    host: 'localhost:3000',
-    basePath: '/',
-  };
-  // options for the swagger docs
-  var options = {
-    // import swaggerDefinitions
-    swaggerDefinition: swaggerDefinition,
-    // path to the API docs
-    apis: ['./public/User.js'],// pass all in array 
-    };
-const swaggerSpec = swaggerJSDoc(options);
+// // swagger definition
+// var swaggerDefinition = {
+//     info: {
+//       title: 'Node Swagger API',
+//       version: '1.0.0',
+//       description: 'Demonstrating how to describe a RESTful API with Swagger',
+//     },
+//     host: 'localhost:3000',
+//     basePath: '/',
+//   };
+//   // options for the swagger docs
+//   var options = {
+//     // import swaggerDefinitions
+//     swaggerDefinition: swaggerDefinition,
+//     // path to the API docs
+//     apis: ['./public/User.js'],// pass all in array 
+//     };
+// const swaggerSpec = swaggerJSDoc(options);
 
-router.get('/swagger.json', function(req, res) {   res.setHeader('Content-Type', 'application/json');   res.send(swaggerSpec); });
+// router.get('/swagger.json', function(req, res) {   res.setHeader('Content-Type', 'application/json');   res.send(swaggerSpec); });
 
-router.use('/api-docs', swaggerUi.serve);
-router.get('/api-docs', swaggerUi.setup(swaggerSpec));
+// router.use('/api-docs', swaggerUi.serve);
+// router.get('/api-docs', swaggerUi.setup(swaggerSpec));
 
 
 

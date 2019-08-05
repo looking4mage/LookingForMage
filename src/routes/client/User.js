@@ -11,13 +11,13 @@ router.get('/group-list',(req,res,next)=>{
     res.send(result)
     
   })
-});
+})
 
 
 router.get('/me',(req,res,next)=>{
   UserRepository.getFullUserData(req.user.id).then((result)=>{
     res.send(result[0]);
   })
-});
+})
 
 module.exports = router;
