@@ -31,7 +31,7 @@ var swaggerDefinition = {
     // import swaggerDefinitions
     swaggerDefinition: swaggerDefinition,
     // path to the API docs
-    apis: ['./public/*.js','routes.js'],// pass all in array 
+    apis: ['./public/User.js'],// pass all in array 
     };
 const swaggerSpec = swaggerJSDoc(options);
 

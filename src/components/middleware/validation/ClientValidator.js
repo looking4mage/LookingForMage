@@ -7,18 +7,18 @@ module.exports = function (req, res, next) {
     if (token) {
       jwt.verify(token, config.app.secret, (err, decoded) => {
         if (err) {
-          return res.json(new Message('Token is not valid'));
+          return res.status(401).json(new Message('Token is not valid'));
         } else {
           if(decoded.exp < Date.now()){
             req.user = decoded;
             next();
           }else{
-            return res.json(new Message('Token is expired'));
+            return res.status(401).json(new Message('Token is expired'));
           }
           
         }
       });
     }else{
-      return res.json(new Message('Token is not supplied'));
+      return res.status(401).json(new Message('Token is not supplied'));
     }
 }
