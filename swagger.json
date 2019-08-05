@@ -1,0 +1,92 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "LFM Api",
+      "description": "JU NOŁ",
+      "version": "1.0"
+    },
+    "produces": ["application/json"],
+    "host": "localhost:300",
+    "basePath": "/",
+    "paths": {
+      "/public/user/create": {
+        "post": {
+          "description": "Tworzenie uzytkownika",
+          "parameters": [],
+          "responses": {},
+          "tags": ["/public"]
+        }
+      },
+      "/public/user/login": {
+        "post": {
+          "description": "Logowanie",
+          "parameters": [],
+          "responses": {},
+          "tags": ["/public"]
+        }
+      },
+      "/public/news": {
+        "get": {
+          "description": "Wiadomości na stronę główną przed zalogowaniem",
+          "parameters": [],
+          "responses": {},
+          "tags": ["/public"]
+        }
+      },
+      "/client/news/create": {
+        "post": {
+          "description": "Stworzenie newsa jak na fb",
+          "parameters": [],
+          "responses": {},
+          "tags": ["/client"]
+        }
+      },
+      "/client/news": {
+        "get": {
+          "description": "Newsy dla uzytkownika oparte na jego znajomych",
+          "parameters": [],
+          "responses": {},
+          "tags": ["/client"]
+        }
+      },
+      "/client/user/group-list": {
+        "get": {
+          "description": "Lista grup do których nalezy uzytkownik",
+          "parameters": [],
+          "responses": {},
+          "tags": ["/client"]
+        }
+      },
+      "/client/group/create": {
+        "post": {
+          "description": "utworzenie grupy wraz z dodaniem uzytkownika jako Owner",
+          "parameters": [],
+          "responses": {},
+          "tags": ["/client"]
+        }
+      },
+      "/client/group/type-list": {
+        "get": {
+          "description": "List dostepnych typów grup",
+          "parameters": [],
+          "responses": {},
+          "tags": ["/client"]
+        }
+      },
+      "/client/user/me": {
+        "get": {
+          "description": "Danie o uzytkowniku",
+          "parameters": [],
+          "responses": {},
+          "tags": ["/client"]
+        }
+      }
+
+
+
+
+
+
+
+    }
+ }

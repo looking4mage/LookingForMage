@@ -34,11 +34,13 @@ var swaggerDefinition = {
     apis: ['./public/User.js'],// pass all in array 
     };
 const swaggerSpec = swaggerJSDoc(options);
+const swaggerDocument = require('../../swagger.json');
 
 router.get('/swagger.json', function(req, res) {   res.setHeader('Content-Type', 'application/json');   res.send(swaggerSpec); });
 
+
 router.use('/api-docs', swaggerUi.serve);
-router.get('/api-docs', swaggerUi.setup(swaggerSpec));
+router.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 
 
