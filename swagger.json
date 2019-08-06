@@ -64,7 +64,7 @@
               "description":"Ołkej"
             }
           },
-          "tags": ["/public"]
+          "tags": ["Logowanie i rejestracja"]
         }
       },
       "/public/user/login": {
@@ -72,7 +72,7 @@
           "description": "Logowanie",
           "parameters": [],
           "responses": {},
-          "tags": ["/public"]
+          "tags": ["Logowanie i rejestracja"]
         }
       },
       "/public/news": {
@@ -80,7 +80,7 @@
           "description": "Wiadomości na stronę główną przed zalogowaniem",
           "parameters": [],
           "responses": {},
-          "tags": ["/public"]
+          "tags": ["Publiczne dane na strone główna"]
         }
       },
       "/client/news/create": {
@@ -88,7 +88,7 @@
           "description": "Stworzenie newsa jak na fb",
           "parameters": [],
           "responses": {},
-          "tags": ["/client"]
+          "tags": ["Pierwszy widok po logowaniu"]
         }
       },
       "/client/news": {
@@ -96,7 +96,7 @@
           "description": "Newsy dla uzytkownika oparte na jego znajomych",
           "parameters": [],
           "responses": {},
-          "tags": ["/client"]
+          "tags": ["Pierwszy widok po logowaniu"]
         }
       },
       "/client/user/group-list": {
@@ -104,7 +104,7 @@
           "description": "Lista grup do których nalezy uzytkownik",
           "parameters": [],
           "responses": {},
-          "tags": ["/client"]
+          "tags": ["Pierwszy widok po logowaniu"]
         }
       },
       "/client/group/create": {
@@ -112,7 +112,7 @@
           "description": "utworzenie grupy wraz z dodaniem uzytkownika jako Owner",
           "parameters": [],
           "responses": {},
-          "tags": ["/client"]
+          "tags": ["Pierwszy widok po logowaniu"]
         }
       },
       "/client/group/type-list": {
@@ -120,7 +120,7 @@
           "description": "List dostepnych typów grup",
           "parameters": [],
           "responses": {},
-          "tags": ["/client"]
+          "tags": ["Pierwszy widok po logowaniu"]
         }
       },
       "/client/user/me": {
@@ -128,7 +128,7 @@
           "description": "Danie o uzytkowniku",
           "parameters": [],
           "responses": {},
-          "tags": ["/client"]
+          "tags": ["Walidacja uzytkownika /me"]
         }
       },
       "/client/group/:group_id": {
@@ -136,7 +136,15 @@
           "description": "Wejscie w grupe jezeli uzytkownik do niej nalezy",
           "parameters": [],
           "responses": {},
-          "tags": ["/client"]
+          "tags": ["Strona grupy"]
+        }
+      },
+      "/client/group/post/create": {
+        "get": {
+          "description": "Dodanie postu do grupy",
+          "parameters": [],
+          "responses": {},
+          "tags": ["Strona grupy"]
         }
       }
 

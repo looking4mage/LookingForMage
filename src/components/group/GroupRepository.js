@@ -22,6 +22,9 @@ let Repository = {
     getGroupPosts(group_id){
         return db('group_post as gp').select('gp.id','gp.title','gp.content','u.user_name','u.id as author_id').where({group_id:group_id})
         .leftJoin('user as u',{"u.id":"gp.author_id"})
+    },
+    savePost(obj){
+        return db('group_post').insert(obj)
     }
 }
 

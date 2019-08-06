@@ -51,4 +51,19 @@ router.get('/:group_id',(req,res,next)=>{
     })
 });
 
+router.post('/post/create',(req,res,next)=>{
+    let incomingData = req.body;
+    incomingData.author_id = req.user.id;
+
+    GroupRepository.checkUser(incomingData.group_id,req.user.id).then((result)=>{
+        if(result.length>0){
+            GroupRepository.savePost(incomingData).then(()=>{
+                res.status(200).end();
+            });
+        }else{
+            res.status(401).send(new MessageModel("Uzytkownik nie nalezy do grupy"))
+        }
+    })
+})
+
 module.exports = router;
