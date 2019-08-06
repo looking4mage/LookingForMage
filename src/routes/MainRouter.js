@@ -36,7 +36,7 @@ var swaggerDefinition = {
 const swaggerSpec = swaggerJSDoc(options);
 const swaggerDocument = require('../../swagger.json');
 
-router.get('/swagger.json', function(req, res) {   res.setHeader('Content-Type', 'application/json');   res.send(swaggerSpec); });
+router.get('/swagger.json', function(req, res) {   res.setHeader('Content-Type', 'application/json');   res.send(swaggerDocument); });
 
 
 router.use('/api-docs', swaggerUi.serve);

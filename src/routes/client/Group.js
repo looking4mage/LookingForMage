@@ -6,6 +6,8 @@ var GroupRepository = require('../../components/group/GroupRepository')
 var GroupUserRepository = require('../../components/group/GroupUserRepository')
 var GroupTypeRepository = require('../../components/group/GroupTypeRepository')
 
+var MessageModel = require('../../components/communication/MessageModel')
+
 router.get('/type-list',(req,res,next)=>{
     GroupTypeRepository.findAll().then(result=>{
         res.send(result);
@@ -20,6 +22,33 @@ router.post('/create',(req,res,next)=>{
         })
     })
 
+});
+
+router.get('/:group_id',(req,res,next)=>{
+    let groupId = req.params.group_id;
+    
+    GroupRepository.checkUser(groupId,req.user.id).then((result)=>{
+        if(result.length>0){
+            GroupRepository.getFullGroupInfo(groupId).then((groupResult)=>{
+                let toSend = {};
+                toSend.group = groupResult[0];
+                GroupUserRepository.getGroupUsers(groupResult[0].id).then((groupUsers)=>{
+                    toSend.users = groupUsers;
+                    GroupRepository.getGroupEvents(groupResult[0].id).then((events)=>{
+                        toSend.events = events;
+                        GroupRepository.getGroupPosts(groupResult[0].id).then((posts)=>{
+                            toSend.posts = posts;
+                            res.send(toSend);
+                        })
+                        
+                    })
+                    
+                })
+            })
+        }else{
+            res.status(401).send(new MessageModel("Uzytkownik nie nalezy do grupy"))
+        }
+    })
 });
 
 module.exports = router;

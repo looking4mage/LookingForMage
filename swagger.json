@@ -6,14 +6,64 @@
       "version": "1.0"
     },
     "produces": ["application/json"],
-    "host": "localhost:300",
+    "host": "localhost:3000",
     "basePath": "/",
     "paths": {
       "/public/user/create": {
         "post": {
           "description": "Tworzenie uzytkownika",
-          "parameters": [],
-          "responses": {},
+          "parameters": [
+            {
+              "in": "body",
+              "name": "user_name",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type":"string"
+              }
+            },
+            {
+              "in": "body",
+              "name": "password",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type":"string"
+              }
+            },
+            {
+              "in": "body",
+              "name": "email",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type":"string"
+              }
+            },
+            {
+              "in": "body",
+              "name": "first_name",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type":"string"
+              }
+            },
+            {
+              "in": "body",
+              "name": "last_name",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type":"string"
+              }
+            }
+          ],
+          "responses": {
+            "200":{
+              "description":"Ołkej"
+            }
+          },
           "tags": ["/public"]
         }
       },
@@ -76,6 +126,14 @@
       "/client/user/me": {
         "get": {
           "description": "Danie o uzytkowniku",
+          "parameters": [],
+          "responses": {},
+          "tags": ["/client"]
+        }
+      },
+      "/client/group/:group_id": {
+        "get": {
+          "description": "Wejscie w grupe jezeli uzytkownik do niej nalezy",
           "parameters": [],
           "responses": {},
           "tags": ["/client"]
