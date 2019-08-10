@@ -5,6 +5,7 @@ var config = require('../../config/global')
 var GroupRepository = require('../../components/group/GroupRepository')
 var GroupUserRepository = require('../../components/group/GroupUserRepository')
 var GroupTypeRepository = require('../../components/group/GroupTypeRepository')
+var UserRepository = require('../../components/user/UserRepository')
 
 var MessageModel = require('../../components/communication/MessageModel')
 
@@ -18,7 +19,9 @@ router.post('/create',(req,res,next)=>{
     let incomingData = req.body;
     GroupRepository.save(incomingData).then(group_id=>{
         GroupUserRepository.save({user_id:req.user.id,group_id:group_id[0],role_id:1}).then(result=>{
-            res.status(200).end();
+            UserRepository.getAllGroups(req.user.id).then(result=>{
+                res.send(result)
+              })
         })
     })
 
