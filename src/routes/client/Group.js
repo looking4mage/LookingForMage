@@ -19,8 +19,8 @@ router.post('/create',(req,res,next)=>{
     let incomingData = req.body;
     GroupRepository.save(incomingData).then(group_id=>{
         GroupUserRepository.save({user_id:req.user.id,group_id:group_id[0],role_id:1}).then(result=>{
-            UserRepository.getAllGroups(req.user.id).then(result=>{
-                res.send(result)
+            UserRepository.getAllGroups(req.user.id).then(resultAfterCreate=>{
+                res.send(resultAfterCreate)
               })
         })
     })
