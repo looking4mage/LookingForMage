@@ -249,13 +249,22 @@
           "responses": {},
           "tags": ["Strona grupy"]
         }
+      },
+      "/client/user/profile/:user_id": {
+        "get": {
+          "description": "Dane do strony profilu",
+          "parameters": [],
+          "responses": {},
+          "tags": ["Strona profilu"]
+        }
+      },
+      "/client/user/friend/:user_id": {
+        "get": {
+          "description": "Wysłanie zaproszenia do znajomych",
+          "parameters": [],
+          "responses": {},
+          "tags": ["Strona profilu"]
+        }
       }
-
-
-
-
-
-
-
     }
  }

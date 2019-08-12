@@ -37,6 +37,14 @@ let Repository = {
         .leftJoin('group as group',{'group.id':'group_user.group_id'})
         .leftJoin('group_type as group_type',{'group_type.id':'group.type_id'}).orderBy('group.id')
     },
+    async getUserProfile(user_id){
+        let data = await db('user as u').select('u.id','u.user_name','u.email').where({"u.id":user_id})
+        .leftJoin('user_profile as up',{'u.profile_id':'up.id'})
+        .then((result)=>{
+           return result[0];
+        })
+        return data;
+    }
 
 }
 
