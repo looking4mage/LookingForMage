@@ -265,6 +265,14 @@
           "responses": {},
           "tags": ["Strona profilu"]
         }
+      },
+      "/client/search/:word": {
+        "get": {
+          "description": "Grupy szuka po name a userów po user_name",
+          "parameters": [],
+          "responses": {},
+          "tags": ["Szukajka"]
+        }
       }
     }
  }

@@ -25,6 +25,12 @@ let Repository = {
     },
     savePost(obj){
         return db('group_post').insert(obj)
+    },
+    async search(keyword){
+        let data = await db('group').select('*').where('name','like','%'+keyword+'%').then((result)=>{
+            return result;
+        })
+        return data;
     }
 }
 

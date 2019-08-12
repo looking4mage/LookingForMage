@@ -44,6 +44,12 @@ let Repository = {
            return result[0];
         })
         return data;
+    },
+    async search(keyword){
+        let data = await db('user').select('*').where('user_name','like','%'+keyword+'%').then((result)=>{
+            return result;
+        })
+        return data;
     }
 
 }
