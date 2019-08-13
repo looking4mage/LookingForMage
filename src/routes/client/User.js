@@ -42,4 +42,9 @@ router.get('/friend/:userId',(req,res,next)=>{
     })  
 })
 
+router.get('/notification/friend',(req,res,next)=>{
+  FriendRepository.getRequestsForUser(req.user.id).then((result)=>{
+    res.send(result);
+  })
+})
 module.exports = router;

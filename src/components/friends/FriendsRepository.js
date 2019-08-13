@@ -10,6 +10,9 @@ let Repository = {
     },
     friendRequest(sending_user,friend){
         return db('friends_request').insert({user_id:sending_user,friend_id:friend})
+    },
+    getRequestsForUser(user_id){
+        return db('friends_request as fr').select('u.id','u.user_name','u.email').leftJoin('user as u',{'u.id':'fr.friend_id'})
     }
 
 

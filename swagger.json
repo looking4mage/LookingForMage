@@ -273,6 +273,14 @@
           "responses": {},
           "tags": ["Szukajka"]
         }
+      },
+      "/client/user/notification/friend": {
+        "get": {
+          "description": "Grupy szuka po name a userów po user_name",
+          "parameters": [],
+          "responses": {},
+          "tags": ["Strona profilu"]
+        }
       }
     }
  }
