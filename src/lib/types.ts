@@ -1,3 +1,8 @@
+export interface IAction<T> {
+  readonly status?: number;
+  readonly body?: T;
+}
+
 export interface IPaginatedData {
   readonly pagination: {
     readonly current: number;
@@ -13,4 +18,16 @@ export interface IPaginatedData {
 export interface IPaginationParametes {
   readonly limit?: number;
   readonly page?: number;
+}
+
+export interface IDataObject {
+  readonly guid: string;
+  readonly createdAt: Date;
+  readonly updatedAt: Date;
+  readonly deletedAt: Date | null;
+}
+
+export interface IValidationError {
+  readonly field: string;
+  readonly message: string;
 }
