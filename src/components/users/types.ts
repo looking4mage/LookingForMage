@@ -1,8 +1,7 @@
-import { IPaginatedData } from '../../lib';
+import { IPaginatedData, IPaginationParametes } from '../../lib';
 
-export interface IListParameters {
-  readonly limit?: string;
-  readonly page?: string;
+export interface IListParameters extends IPaginationParametes {
+  readonly game?: string;
 }
 
 export interface IListUsers extends IPaginatedData {

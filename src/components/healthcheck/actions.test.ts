@@ -1,16 +1,12 @@
 import { Context } from 'koa';
 
 import { getHealthcheck } from './actions';
-import { IHealthcheckResponse } from './types';
 
 describe('healthcheck actions', () => {
   it('should respond with status OK', async () => {
-    const ctx: { status?: number; body?: IHealthcheckResponse } = {};
+    const response = await getHealthcheck(new Object() as Context);
 
-    await getHealthcheck(ctx as Context);
-
-    expect(ctx.status).toEqual(200);
-    expect(ctx.body).toHaveProperty('status');
-    expect(ctx.body && ctx.body.status).toEqual('OK');
+    expect(response.status).toEqual(200);
+    expect(response.body && response.body.status).toEqual('OK');
   });
 });
