@@ -1,10 +1,11 @@
 import Koa from 'koa';
 import Json from 'koa-json';
-import Logger from 'koa-logger';
+import accessLogger from 'koa-logger';
 import Router from 'koa-router';
 
 import { getHealthcheck } from './components/healthcheck';
 import * as users from './components/users';
+import { logger, postgres } from './lib';
 
 const app = new Koa();
 const pubRouter = new Router();
@@ -19,7 +20,9 @@ privRouter.put('/users/:guid', users.updateUser);
 privRouter.del('/users/:guid', users.deleteUser);
 
 app.use(Json());
-app.use(Logger());
+app.use(logger);
+app.use(accessLogger());
+app.use(postgres);
 
 app.use(pubRouter.routes());
 app.use(pubRouter.allowedMethods());
