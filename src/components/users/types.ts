@@ -4,17 +4,17 @@ export interface IListParameters extends IPaginationParametes {
   readonly game?: string;
 }
 
-export interface IListUsers extends IPaginatedData {
+export interface IListUsers {
   readonly data: ReadonlyArray<IUser>;
 }
 
 export interface IUser {
   readonly email: string;
   readonly guid: string;
-  readonly location: {
-    readonly latitude: number;
-    readonly longitude: number;
-    readonly name: string;
-  };
+  // readonly location: {
+  //   readonly latitude: number;
+  //   readonly longitude: number;
+  //   readonly name: string;
+  // };
   readonly name: string;
 }
