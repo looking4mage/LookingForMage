@@ -1,8 +1,10 @@
 import { Context } from 'koa';
 
-import { IAction, NotFound, ValidationError } from '../../lib';
+import { IAction, NotFound, ValidationError, Exist } from '../../lib';
+import { IUser } from './types';
 import * as t from './types';
 import * as userRepository from '../../repository/user';
+import jwt from 'jsonwebtoken';
 
 export async function listUsers(ctx: Context): Promise<IAction<t.IListUsers>> {
   const params = ctx.query as t.IListParameters;
@@ -19,13 +21,18 @@ export async function listUsers(ctx: Context): Promise<IAction<t.IListUsers>> {
   };
 }
 
-export async function createUser(_ctx: Context): Promise<IAction<t.IUser>> {
+export async function createUser(_ctx: Context): Promise<IAction<t.IJwtToken>> {
+  const user : IUser = _ctx.request.body;
+  if(await userRepository.exist(_ctx.db,user)){
+    throw new Exist("User exist");
+  }
+  const saved = await userRepository.save(_ctx.db,user);
+  const token = jwt.sign(saved,'DUNNOCOZROBICZSECRET');
+
   return {
     status: 201,
     body: {
-      email: 'jeff@jefferson.com',
-      guid: `${123456}`,
-      name: 'Jeff Jefferson',
+      token:token
     },
   };
 }
@@ -34,14 +41,11 @@ export async function getUser(ctx: Context): Promise<IAction<t.IUser>> {
   if (ctx.params.guid === 'not-found') {
     throw new NotFound('User not found!');
   }
+  const user = await userRepository.getByGUID(ctx.db,ctx.params.guid);
 
   return {
     status: 200,
-    body: {
-      email: 'jeff@jefferson.com',
-      guid: ctx.params.guid,
-      name: 'Jeff Jefferson',
-    },
+    body: user,
   };
 }
 
@@ -60,6 +64,7 @@ export async function updateUser(ctx: Context): Promise<IAction<t.IUser>> {
       email: 'jeff@jefferson.com',
       guid: ctx.params.guid,
       name: 'Jeff Jefferson',
+      password:"1234"
     },
   };
 }

@@ -10,11 +10,16 @@ export interface IListUsers {
 
 export interface IUser {
   readonly email: string;
-  readonly guid: string;
+  readonly guid?: string;
   // readonly location: {
   //   readonly latitude: number;
   //   readonly longitude: number;
   //   readonly name: string;
   // };
   readonly name: string;
+  readonly password: string;
+}
+
+export interface IJwtToken{
+  readonly token : string;
 }

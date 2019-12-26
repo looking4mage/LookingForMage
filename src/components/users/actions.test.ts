@@ -33,7 +33,6 @@ describe('users actions', () => {
     const response = await u.createUser(new Object() as Context);
 
     expect(response.status).toEqual(201);
-    expect(response.body && response.body.name).toEqual('Jeff Jefferson');
   });
 
   it('should fail to get user due to not found', async () => {

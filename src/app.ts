@@ -6,6 +6,7 @@ import Router from 'koa-router';
 import { getHealthcheck } from './components/healthcheck';
 import * as users from './components/users';
 import { captureErrors, handle, handleErrors, logger, postgres } from './lib';
+import parser from 'koa-bodyparser';
 
 const app = new Koa();
 const pubRouter = new Router();
@@ -20,6 +21,7 @@ privRouter.put('/users/:guid', handle(users.updateUser));
 privRouter.del('/users/:guid', handle(users.deleteUser));
 
 app.use(Json());
+app.use(parser());
 app.use(captureErrors);
 app.use(logger);
 app.use(accessLogger());
