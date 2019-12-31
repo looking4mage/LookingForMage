@@ -5,9 +5,9 @@ import { IUser } from './types';
 import * as t from './types';
 import * as userRepository from '../../repository/user';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
 export async function listUsers(ctx: Context): Promise<IAction<t.IListUsers>> {
-  const params = ctx.query as t.IListParameters;
   const users = await userRepository.getAll(ctx.db);
   if(users.length == 0){
     throw new NotFound("Users list is empty");
@@ -65,6 +65,22 @@ export async function updateUser(ctx: Context): Promise<IAction<t.IUser>> {
       guid: ctx.params.guid,
       name: 'Jeff Jefferson',
       password:"1234"
+    },
+  };
+}
+export async function loginUser(ctx : Context): Promise<IAction<t.IJwtToken>> {
+  const data = ctx.request.body;
+  const user = await userRepository.verifyUser(ctx.db,data.email,data.password);
+  let token : string;
+  if(user===undefined){
+    throw new Error("Wrong password");
+  }else{
+    token = jwt.sign(user,'DUNNOCOZROBICZSECRET');
+  }
+  return {
+    status: 201,
+    body: {
+      token:token
     },
   };
 }

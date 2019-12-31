@@ -32,3 +32,14 @@ export async function getByGUID(db : Client, guid : string) : Promise<IUser>{
 
   return user.rows[0];
 }
+
+export async function getByEmail(db : Client, email : string) : Promise<IUser>{
+  const user = await db.query("SELECT email,name,guid FROM public.user WHERE email = $1",[email]);
+  return user.rows[0];
+}
+
+export async function verifyUser(db : Client, email : string, password : string) : Promise<undefined | IUser>{
+  const user = await db.query("SELECT email,name,guid,password FROM public.user WHERE email = $1",[email]);
+  const result = bcrypt.compareSync(password,user.rows[0].password);
+  return result?user.rows[0]:undefined;
+}

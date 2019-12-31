@@ -1,3 +1,4 @@
+require('dotenv').config();
 import Koa from 'koa';
 import Json from 'koa-json';
 import accessLogger from 'koa-logger';
@@ -14,6 +15,7 @@ const privRouter = new Router();
 
 pubRouter.get('/healthcheck', handle(getHealthcheck));
 pubRouter.post('/users', handle(users.createUser));
+pubRouter.post('/login',handle(users.loginUser));
 
 privRouter.get('/users', handle(users.listUsers));
 privRouter.get('/users/:guid', handle(users.getUser));
