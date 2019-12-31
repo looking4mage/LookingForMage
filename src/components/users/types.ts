@@ -17,7 +17,7 @@ export interface IUser {
   //   readonly name: string;
   // };
   readonly name: string;
-  readonly password: string;
+  readonly password?: string;
 }
 
 export interface IJwtToken{
