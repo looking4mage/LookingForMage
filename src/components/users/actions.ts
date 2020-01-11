@@ -9,7 +9,7 @@ import bcrypt from 'bcrypt';
 
 export async function listUsers(ctx: Context): Promise<IAction<t.IListUsers>> {
   const users = await userRepository.getAll(ctx.db);
-  if(users.length == 0){
+  if(users.length === 0){
     throw new NotFound("Users list is empty");
   }
 

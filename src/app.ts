@@ -1,4 +1,5 @@
-require('dotenv').config();
+import * as dotenv from "dotenv";
+dotenv.config();
 import Koa from 'koa';
 import Json from 'koa-json';
 import accessLogger from 'koa-logger';
