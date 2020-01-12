@@ -6,25 +6,28 @@
   "scripts": {
     "build": "tsc",
     "fix:ts": "tslint -p . --fix",
+    "lint": "npm run -s lint:ts",
     "lint:ts": "tslint --format codeFrame -p .",
     "start": "tsc && node ./dist/app.js",
-    "test": "jest --coverage"
+    "test": "npm run -s test:unit && npm run -s lint",
+    "test:audit": "npm audit",
+    "test:unit": "jest --coverage"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/paroxp/blacksmith.git"
+    "url": "git+https://github.com/looking4mage/api.git"
   },
   "keywords": [
     "looking",
     "for",
     "mage"
   ],
-  "author": "DnD group",
+  "author": "Looking 4 Mage",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/paroxp/blacksmith/issues"
+    "url": "https://github.com/looking4mage/api/issues"
   },
-  "homepage": "https://github.com/paroxp/blacksmith#readme",
+  "homepage": "https://github.com/looking4mage/api#readme",
   "dependencies": {
     "koa": "^2.8.1",
     "koa-json": "^2.0.2",
