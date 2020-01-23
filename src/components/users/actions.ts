@@ -64,18 +64,18 @@ export async function updateUser(ctx: Context): Promise<IAction<t.IUser>> {
       email: 'jeff@jefferson.com',
       guid: ctx.params.guid,
       name: 'Jeff Jefferson',
-      password:"1234"
+      password: '1234',
     },
   };
 }
-export async function loginUser(ctx : Context): Promise<IAction<t.IJwtToken>> {
+export async function loginUser(ctx: Context): Promise<IAction<t.IJwtToken>> {
   const data = ctx.request.body;
   const user = await userRepository.verifyUser(ctx.db,data.email,data.password);
   let token : string;
-  if(user===undefined){
-    throw new Error("Wrong password");
-  }else{
-    token = jwt.sign(user,'DUNNOCOZROBICZSECRET');
+  if (user === undefined) {
+    throw new Error('Wrong password');
+  } else {
+    token = jwt.sign(user, 'DUNNOCOZROBICZSECRET');
   }
   return {
     status: 201,

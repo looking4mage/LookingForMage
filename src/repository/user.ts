@@ -3,8 +3,8 @@ import { Client } from 'pg';
 import { IUser } from './../components/users/types';
 import { v4 as uuid } from 'uuid';
 
-export async function getAll(db : Client) : Promise<Array<IUser>>{
-    const users = await db.query("SELECT * FROM public.user");
+export async function getAll(db : Client) : Promise<Array<IUser>> {
+    const users = await db.query('SELECT * FROM public.user;');
     return users.rows;
 }
 

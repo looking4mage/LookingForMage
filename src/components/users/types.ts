@@ -21,5 +21,5 @@ export interface IUser {
 }
 
 export interface IJwtToken{
-  readonly token : string;
+  readonly token: string;
 }
