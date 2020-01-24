@@ -16,7 +16,7 @@ export async function captureErrors(ctx: Context, next: () => Promise<any>) {
 
 export async function handleErrors(err: any, ctx: Context) {
   const date = new Date();
-  const reference = { reference: `paas-deployments-${date.getTime()}` };
+  const reference = { reference: `looking4mage-api-${date.getTime()}` };
 
   if (err instanceof NotFound) {
     ctx.status = 404;

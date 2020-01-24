@@ -4,8 +4,9 @@ import Router from 'koa-router';
 
 import { getHealthcheck } from './components/healthcheck';
 import * as users from './components/users';
-import { captureErrors, handle, handleErrors, logger, postgres } from './lib';
+import { captureErrors, handle, handleErrors, logger, postgres, setupLogger } from './lib';
 
+const log = setupLogger();
 const app = new Koa();
 const pubRouter = new Router();
 const privRouter = new Router();
@@ -20,7 +21,7 @@ privRouter.del('/users/:guid', handle(users.deleteUser));
 
 app.use(Json());
 app.use(captureErrors);
-app.use(logger);
+app.use(logger(log));
 app.use(postgres);
 
 app.use(pubRouter.routes());
@@ -31,4 +32,5 @@ app.use(privRouter.allowedMethods());
 
 app.on('error', handleErrors);
 
-app.listen(process.env.PORT || 3000);
+const server = app.listen(process.env.PORT || 3000);
+log.info('starting server', server.address());
