@@ -33,6 +33,7 @@
     "koa-json": "^2.0.2",
     "koa-router": "^7.4.0",
     "pg": "^7.12.1",
+    "tslib": "^1.10.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
