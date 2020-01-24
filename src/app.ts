@@ -1,6 +1,5 @@
 import Koa from 'koa';
 import Json from 'koa-json';
-import accessLogger from 'koa-logger';
 import Router from 'koa-router';
 
 import { getHealthcheck } from './components/healthcheck';
@@ -22,7 +21,6 @@ privRouter.del('/users/:guid', handle(users.deleteUser));
 app.use(Json());
 app.use(captureErrors);
 app.use(logger);
-app.use(accessLogger());
 app.use(postgres);
 
 app.use(pubRouter.routes());
