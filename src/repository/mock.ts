@@ -1,9 +1,10 @@
-import pgmock from 'pgmock2';
-export const pg = new pgmock();
+import { QueryConfig, QueryResult } from 'pg';
 
-pg.add('SELECT * FROM public.user;', [], {
-    rowCount: 1,
-    rows: [
-        { guid: '5dgs-ggsagsdg-sadgsdg', email: 'test@test.pl', name: 'Test Test', password: 'dfdsfag234fs243efdsf234sdfd'},
-    ],
-});
+export const mockQuery = jest.fn().mockImplementation(data =>
+  (_cfg: string | QueryConfig<any>): Promise<QueryResult<any>> => Promise.resolve({
+    command: '',
+    fields: [],
+    rowCount: data?.length || 0,
+    rows: data,
+    oid: 0,
+  }));

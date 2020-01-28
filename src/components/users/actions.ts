@@ -21,12 +21,12 @@ export async function listUsers(ctx: Context): Promise<IAction<t.IListUsers>> {
   };
 }
 
-export async function createUser(_ctx: Context): Promise<IAction<t.IJwtToken>> {
-  const user : IUser = _ctx.request.body;
-  if(await userRepository.exist(_ctx.db,user)){
+export async function createUser(ctx: Context): Promise<IAction<t.IJwtToken>> {
+  const user : IUser = ctx.request.body;
+  if(await userRepository.exist(ctx.db,user)){
     throw new Exist("User exist");
   }
-  const saved = await userRepository.save(_ctx.db,user);
+  const saved = await userRepository.save(ctx.db,user);
   const token = jwt.sign(saved,'DUNNOCOZROBICZSECRET');
 
   return {
