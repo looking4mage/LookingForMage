@@ -2,9 +2,11 @@ import { Context } from 'koa';
 
 import { NotFound } from './errors.notfound';
 import { ValidationError } from './errors.validation';
+import { Exist } from './errors.exist';
 
 export { NotFound } from './errors.notfound';
 export { ValidationError } from './errors.validation';
+export { Exist } from './errors.exist';
 
 export async function captureErrors(ctx: Context, next: () => Promise<any>) {
   try {
@@ -20,6 +22,13 @@ export async function handleErrors(err: any, ctx: Context) {
 
   if (err instanceof NotFound) {
     ctx.status = 404;
+    ctx.body = { message: err.message, ...reference };
+    ctx.log.debug({ message: err.message, ...reference });
+    return;
+  }
+
+  if (err instanceof Exist) {
+    ctx.status = 403;
     ctx.body = { message: err.message, ...reference };
     ctx.log.debug({ message: err.message, ...reference });
     return;

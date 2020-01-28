@@ -11,12 +11,12 @@ describe('postgres', () => {
 
   beforeEach(() => { ctx = {}; });
 
-  it('should correctly setup logger', async () => {
-    class MyClient extends pg.Client {
+  it('should correctly setup database connection', async () => {
+    class MyClient extends pg.Pool {
       public connect = jest.fn();
       public end = jest.fn();
     }
-    pg.Client = MyClient;
+    pg.Pool = MyClient;
 
     await postgres(ctx as Context, async () => { ctx.status = 200; });
 
