@@ -1,6 +1,6 @@
 import { Context } from 'koa';
 
-import { logger } from './logger';
+import { logger, setupLogger } from './logger';
 
 describe('logger', () => {
   let ctx: {
@@ -11,7 +11,8 @@ describe('logger', () => {
   beforeEach(() => { ctx = {}; });
 
   it('should correctly setup logger', async () => {
-    await logger(ctx as Context, async () => { ctx.status = 200; });
+    const log = setupLogger();
+    await logger(log)(ctx as Context, async () => { ctx.status = 200; });
 
     expect(ctx.log).toBeDefined();
     expect(ctx.log).toHaveProperty('debug');
@@ -23,7 +24,8 @@ describe('logger', () => {
 
   it('should correctly setup logger with DEBUG env variable', async () => {
     process.env.DEBUG = 'true';
-    await logger(ctx as Context, async () => { ctx.status = 200; });
+    const log = setupLogger();
+    await logger(log)(ctx as Context, async () => { ctx.status = 200; });
 
     expect(ctx.log).toBeDefined();
     expect(ctx.log).toHaveProperty('debug');
